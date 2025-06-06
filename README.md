@@ -1,139 +1,117 @@
-# TaskManagementApp
+# Task Management Tool
 
-TaskManagementApp is a comprehensive task management platform designed to streamline project management activities, from task creation to tracking and assignment. Built with the T3 stack, this application integrates a modern frontend built with Next.js and Tailwind CSS, a serverless backend powered by SST on AWS, and a robust database using Supabase.
+A modern, full-stack task management application built with Next.js, TypeScript, and Prisma.
 
-![Project Diagram](https://i.postimg.cc/8c5FDRhs/Image-25-08-24-at-12-52-AM.jpg)
+## 🚀 Tech Stack
 
-## Features
+- **Frontend Framework**: Next.js 14
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Database**: Prisma with PostgreSQL
+- **Authentication**: Supabase Auth
+- **State Management**: React Query
+- **API Layer**: tRPC
+- **Testing**: Cypress
+- **Deployment**: SST (Serverless Stack)
+- **Code Quality**: ESLint, Prettier
 
-### 1. Task Management Interface
+## 📋 Prerequisites
 
-- **Task Creation:** Easily create tasks with detailed descriptions.
-- **Assignment:** Assign tasks to team members, set deadlines, and prioritize with tags.
-- **Tracking:** Monitor task progress and ensure timely completion.
-![Project Main](https://i.postimg.cc/QM9Bk9GT/Image-25-08-24-at-8-33-PM.jpg)
-![Task Creation](https://i.postimg.cc/QCBnjJRM/Image-25-08-24-at-8-40-PM.jpg)
-![Project Task](https://i.postimg.cc/t4PQ3pvg/Image-25-08-24-at-8-31-PM.jpg)
+Before you begin, ensure you have the following installed:
+- Node.js (v18 or higher)
+- npm (v10.2.4 or higher)
+- PostgreSQL
+- Git
 
-### 2. User Profile and Project Settings
+## 🛠️ Setup Instructions
 
-- **User Profile:** Allows team members to manage their personal information and preferences.
-- **Project Settings:** Customize project-specific settings to suit team needs.
-![Profile Settings](https://i.postimg.cc/HLDJzWpv/Image-25-08-24-at-8-56-PM.jpg)
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd task_management_tool
+   ```
 
-## Tech Stack
+2. **Install dependencies**
+   ```bash
+   cd app
+   npm install
+   ```
 
-- **Frontend:** Next.js, Tailwind CSS
-- **Backend:** SST (Serverless Stack) on AWS
-- **Database:** Supabase with Prisma ORM
-- **Authentication:** Supabase Authentication
-- **Testing:** Cypress for Unit testing
+3. **Set up environment variables**
+   Create a `.env` file in the `app` directory with the following variables:
+   ```
+   DATABASE_URL="postgresql://username:password@localhost:5432/task_management"
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
 
-## Installation
+4. **Set up the database**
+   ```bash
+   # Start the database (if using the provided script)
+   ./start-database.sh
 
-### Prerequisites
+   # Generate Prisma client
+   npm run db:generate
 
-- **Node.js** (v14 or later) installed on your local machine.
-- **npm** (Node Package Manager) or **Yarn**.
+   # Run database migrations
+   npm run db:migrate
+   ```
 
-### Clone the Repository
+5. **Start the development server**
+   ```bash
+   npm run dev
+   ```
 
-1. **Clone the repository:**
-    ```bash
-    git clone https://github.com/Ankitjha2202/task_management_tool.git
-    ```
+## 🎯 Available Scripts
 
-2. **Navigate to the project directory:**
-    ```bash
-    cd task_management_tool
-    ```
+- `npm run dev` - Start the development server
+- `npm run build` - Build the application for production
+- `npm run start` - Start the production server
+- `npm run lint` - Run ESLint
+- `npm run db:studio` - Open Prisma Studio to manage database
+- `npm run db:generate` - Generate Prisma client
+- `npm run db:migrate` - Run database migrations
+- `npm run db:push` - Push schema changes to database
 
-### Set Up Environment Variables
+## 🧪 Testing
 
-1. **Create a `.env` file in the root directory.**
+The project uses Cypress for end-to-end testing. To run tests:
 
-2. **Add your Supabase, AWS, and Prisma database credentials to the `.env` file:**
-    ```env
-    NEXT_PUBLIC_SUPABASE_URL=https://your-supabase-url.supabase.co
-    NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-    AWS_ACCESS_KEY_ID=your-access-key-id
-    AWS_SECRET_ACCESS_KEY=your-secret-access-key
-    DATABASE_URL=postgresql://user:password@localhost:5432/mydatabase
-    ```
+```bash
+npm run cypress:open  # Opens Cypress test runner
+```
 
-### Install Dependencies
+## 📁 Project Structure
 
-1. **Install the necessary dependencies:**
-    ```bash
-    npm install
-    ```
-    or, if using Yarn:
-    ```bash
-    yarn install
-    ```
+```
+task_management_tool/
+├── app/
+│   ├── src/           # Source code
+│   ├── public/        # Static files
+│   ├── prisma/        # Database schema and migrations
+│   ├── cypress/       # E2E tests
+│   └── appUtils/      # Utility functions
+```
 
-### Set Up Prisma
+## 🔧 Development Tools
 
-1. **Initialize Prisma:**
-    ```bash
-    npx prisma init
-    ```
+- **ESLint**: Code linting
+- **Prettier**: Code formatting
+- **TypeScript**: Type safety
+- **Tailwind CSS**: Utility-first CSS framework
+- **Prisma**: Database ORM
+- **tRPC**: Type-safe API layer
+- **React Query**: Data fetching and caching
+- **Supabase**: Authentication and real-time features
 
-2. **Migrate the Database:**
-    Run the migration to set up the database schema:
-    ```bash
-    npx prisma migrate dev --name init
-    ```
+## 📝 Contributing
 
-3. **Generate Prisma Client:**
-    Generate the Prisma client to interact with the database:
-    ```bash
-    npx prisma generate
-    ```
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-### Run the Development Server
+## 📄 License
 
-1. **Start the development server:**
-    ```bash
-    npm run dev
-    ```
-    or, if using Yarn:
-    ```bash
-    yarn dev
-    ```
-
-2. **Access the application:**
-    Open `http://localhost:3000` in your browser.
-
-## Deployed Site
-
-The application is deployed using AWS and SST. You can access the live version of the application at [https://d1mz4vajeg025u.cloudfront.net/](https://d1mz4vajeg025u.cloudfront.net/).
-
-## Testing with Cypress
-
-Cypress is used for end-to-end testing in this project. In addition to testing the main user interface, I have also added tests for utility functions found in the `appUtils` folder.
-
-### Tests for `appUtils`
-
-The `appUtils` folder contains important utility functions like `showSuccess` and `showError`. These functions are used to display success and error messages throughout the application. Here’s how you can run the tests:
-
-### Install Cypress
-
-1. **Install Cypress as a development dependency:**
-    ```bash
-    npm install cypress --save-dev
-    ```
-    or, if using Yarn:
-    ```bash
-    yarn add cypress --dev
-    ```
-
-### Run Cypress Tests
-
-1. **Open Cypress Test Runner:**
-    ```bash
-    npx cypress open
-    ```
-
-2. **Run all tests:**
-    The Test Runner will display all available tests, including those for the `appUtils` functions. Click on any test to run it.
+This project is licensed under the MIT License - see the LICENSE file for details. 
